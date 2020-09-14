@@ -1,0 +1,16 @@
+mock_sub => sub {
+return <<'EOF';
+mock_data
+EOF
+},
+
+mock_heredoc => <<'EOF',
+EOF
+
+mock_str_base => 'base_str',
+
+mock_array_ref_ => ['base_str'],
+
+mock_hash_ref_ => {str => 'base_str'},
+
+

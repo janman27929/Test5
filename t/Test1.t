@@ -41,12 +41,20 @@ sub shutdown  : Test(shutdown) {
 
 #-------------------------------[ UNIT TESTS HERE ]-----------------------------
 
-sub test_Test1 : Test(no_plan) {
-  #my @mocks = set_mock (qw(MODULE METHOD MOCK));
+sub test_manual_constructor : Test(no_plan) {
+  my @mocks = set_mock (qw(Test1 rtn_msg mock_rtn_msg));
 
-  my $self  = shift->{base};  
-  #$self->setup;
+  my $self  = Test1->new(
+    color => 'red',
+  );  
+  $self->setup;
   is  ref $self, 'Test1', 'is: ref $self';
+  is  $self->rtn_msg, 'mock_rtn_msg', 'is: mock_rtn_msg';
+  undef @mocks;
+  is  $self->rtn_msg, 'rtn_msg', 'is: rtn_msg';
+  is  $self->rtn_msg('new_msg'), 'new_msg', 'is: new_msg';
+  is  $self->color, 'red', 'is: color:red';
+  is  $self->size, 'xl', 'is: size:xl';
   print '-'x30, '[ test_Test1 ]', '-'x30 ,"\n";
   $DB::single = 1; 
   $DB::single = 1; 
